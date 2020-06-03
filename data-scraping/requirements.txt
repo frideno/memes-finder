@@ -1,0 +1,2 @@
+Google-Images-Search==1.1.1
+Pillow==6.2.2
