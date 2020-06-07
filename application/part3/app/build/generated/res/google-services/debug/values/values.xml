@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">421167399747-umjh4j7nvp6ukh5o4srnruk0peabnqsf.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://filter-memes.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">421167399747</string>
+    <string name="google_api_key" translatable="false">AIzaSyBcvU4MVeUNI-CDEsTAtYoklzP8bSozJuI</string>
+    <string name="google_app_id" translatable="false">1:421167399747:android:d4e2d2a9e058b8423de5f6</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBcvU4MVeUNI-CDEsTAtYoklzP8bSozJuI</string>
+    <string name="google_storage_bucket" translatable="false">filter-memes.appspot.com</string>
+    <string name="project_id" translatable="false">filter-memes</string>
+</resources>
