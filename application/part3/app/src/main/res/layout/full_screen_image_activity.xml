@@ -32,7 +32,7 @@
             android:layout_weight="0.5">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/share_image"
                 android:layout_width="123dp"
                 android:layout_height="99dp"
                 android:layout_gravity="center"
@@ -46,7 +46,7 @@
             android:layout_weight="0.5">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/delete_image"
                 android:layout_width="123dp"
                 android:layout_height="99dp"
                 android:layout_gravity="center"

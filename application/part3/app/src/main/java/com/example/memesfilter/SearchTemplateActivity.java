@@ -72,7 +72,7 @@ public class SearchTemplateActivity extends AppCompatActivity {
                             templates.add(ds.getValue(GalleryCell.class));
                         }
 
-                        GalleryAdapter galleryAdapter = new GalleryAdapter(templates, getApplicationContext(), new FindSimilarPicturesOnClick());
+                        GalleryAdapter galleryAdapter = new GalleryAdapter(templates, SearchTemplateActivity.this, new FindSimilarPicturesOnClick());
                         recyclerView.setAdapter(galleryAdapter);
                     }
                 }
@@ -108,21 +108,9 @@ public class SearchTemplateActivity extends AppCompatActivity {
                 results.add(cell);
             }
         }
-        GalleryAdapter galleryAdapter = new GalleryAdapter(results, getApplicationContext(), new FindSimilarPicturesOnClick());
+        GalleryAdapter galleryAdapter = new GalleryAdapter(results, this, new FindSimilarPicturesOnClick());
         recyclerView.setAdapter(galleryAdapter);
     }
 
-
-    private ArrayList<GalleryCell> listAllImages(String pathName) {
-        ArrayList<GalleryCell> galleryFiles = new ArrayList<>();
-        File file = new File(pathName);
-        File[] files = file.listFiles();
-        if (files != null) {
-            for (File f : files) {
-                galleryFiles.add(new GalleryCell("Drake", f.getAbsolutePath()));
-            }
-        }
-        return galleryFiles;
-    }
 
 }

@@ -1,6 +1,6 @@
 package com.example.memesfilter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class FullScreenImageOnClick implements ImageOnClickAdapter{
 
     @Override
-    public View.OnClickListener getImageOnClickListener(final Context context, final GalleryCell galleryCell) {
+    public View.OnClickListener getImageOnClickListener(final Activity activity, final GalleryCell galleryCell) {
         return new View.OnClickListener() {
 
             @Override
@@ -24,11 +24,11 @@ public class FullScreenImageOnClick implements ImageOnClickAdapter{
                 // todo: change to real.
 
                 // send them to the gallery activity.
-                Intent intent = new Intent(context, FullScreenImageDisplayActivity.class);
+                Intent intent = new Intent(activity, FullScreenImageDisplayActivity.class);
                 Bundle args = new Bundle();
                 args.putSerializable("ARRAYLIST", (Serializable) galleryCells);
                 intent.putExtra("BUNDLE", args);
-                context.startActivity(intent);
+                activity.startActivity(intent);
             }
         };
     }

@@ -43,7 +43,7 @@ public class GalleryActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
 
-        GalleryAdapter adapter = new GalleryAdapter(galleryCells, getApplicationContext(), new FullScreenImageOnClick());
+        GalleryAdapter adapter = new GalleryAdapter(galleryCells, this, new ShareImageOnClick());
         recyclerView.setAdapter(adapter);
 
     }

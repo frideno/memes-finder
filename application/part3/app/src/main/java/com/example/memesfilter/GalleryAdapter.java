@@ -1,41 +1,27 @@
 package com.example.memesfilter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
     private ArrayList<GalleryCell> galleryCells;
-    private Context context;
+    private Activity activity;
     private ImageOnClickAdapter imageOnClickAdapter;
 
 
-    public GalleryAdapter(ArrayList<GalleryCell> galleryCells, Context context, ImageOnClickAdapter imageOnClickAdapter) {
+    public GalleryAdapter(ArrayList<GalleryCell> galleryCells, Activity activity, ImageOnClickAdapter imageOnClickAdapter) {
         this.galleryCells = galleryCells;
-        this.context = context;
+        this.activity = activity;
         this.imageOnClickAdapter = imageOnClickAdapter;
     }
 
@@ -59,7 +45,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         SetImageFromPath(galleryCells.get(position).getPath(), holder.image);
 
         // add click listener to the image, which passes the gallery cell;
-        holder.image.setOnClickListener(this.imageOnClickAdapter.getImageOnClickListener(context, galleryCells.get(position)));
+        holder.image.setOnClickListener(this.imageOnClickAdapter.getImageOnClickListener(activity, galleryCells.get(position)));
 
     }
 
@@ -74,7 +60,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     private void SetImageFromPath(String path, ImageView imageView) {
         Bitmap bMap;
-        new DownloadImageTask(imageView, context).execute(path);
+        new DownloadImageTask(imageView, activity).execute(path);
 
     }
 

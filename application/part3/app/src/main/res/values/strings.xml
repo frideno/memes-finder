@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Memes Filter</string>
+    <string name="memes_filter">Memes Filter</string>
+    <string name="hello_user">Hello {user}!</string>
+    <string name="storage_memes_button_text">Find meme by template from storage</string>
+    <string name="popular_template_button_text">Find Meme by popular template</string>
+    <string name="all_memes_button_text">Find All memes</string>
+
 </resources>
