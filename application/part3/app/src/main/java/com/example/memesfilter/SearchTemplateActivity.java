@@ -1,9 +1,14 @@
 package com.example.memesfilter;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -61,7 +66,9 @@ public class SearchTemplateActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        // todo: move to loaing screen activity:
         super.onStart();
+
         if (dbRef != null) {
             dbRef.addValueEventListener(new ValueEventListener() {
                 @Override

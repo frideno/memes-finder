@@ -17,10 +17,16 @@ public class ImagesCache {
 
     private static ImagesCache instance = null;
 
-    public ConcurrentHashMap<String, Bitmap> cache;
+    public ConcurrentHashMap<String, Bitmap> bitmapsCache;
+    public ConcurrentHashMap<String, Boolean> predictionsCache;
+    public ConcurrentHashMap<String, Long> imageHashesCache;
+
+
 
     private ImagesCache() {
-        cache = new ConcurrentHashMap<>();
+        bitmapsCache = new ConcurrentHashMap<>();
+        predictionsCache = new ConcurrentHashMap<>();
+        imageHashesCache = new ConcurrentHashMap<>();
     }
 
     public static ImagesCache getInstance() {

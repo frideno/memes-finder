@@ -93,12 +93,12 @@ public class SimilarPhoto {
     }
 
     public static int hamDist(long finger1, long finger2) {
-        int dist = 0;
-        long result = finger1 ^ finger2;
-        while (result != 0) {
-            dist += result & 1;
-            result >>= 1;
+        int countOfSetBits = 0;
+        long number = finger1 ^ finger2;
+        while (number != 0) {
+            countOfSetBits += number & 1;
+            number = number >>> 1;
         }
-        return dist;
+        return countOfSetBits;
     }
 }

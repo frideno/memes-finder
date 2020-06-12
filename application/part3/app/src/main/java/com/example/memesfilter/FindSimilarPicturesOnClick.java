@@ -13,55 +13,46 @@ import android.view.View;
 import android.widget.ImageView;
 
 
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class FindSimilarPicturesOnClick implements ImageOnClickAdapter {
 
     @Override
     public View.OnClickListener getImageOnClickListener(final Activity activity, final GalleryCell galleryCell) {
-        final ImagePHash phash = new ImagePHash();
+
         return new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                final Long templateHash = SimilarPhoto.getFingerPrint(ImagesCache.getInstance().bitmapsCache.get(galleryCell.getPath()));
+
                 // find the images that are similar.
                 ArrayList<GalleryCell> matchingPictures = new ArrayList<>();
-                //galleryCells = listAllImages();
 
-                File root = new File(Environment.getExternalStorageDirectory() + "/DCIM/Camera/");
-                Bitmap templateBitmap = ((BitmapDrawable) (((ImageView) v).getDrawable())).getBitmap();
-
-                String templateHash = phash.culcPHash(templateBitmap);
-
-                for (File file : root.listFiles()) {
-                    Bitmap fileBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                    String fileHash = phash.culcPHash(fileBitmap);
-
-                    if (phash.distance(templateHash, fileHash) < 15) {
-                        matchingPictures.add(new GalleryCell(galleryCell.getTitle(), file.getAbsolutePath()));
+                ImagesCache imagesCache = ImagesCache.getInstance();
+                for (String imagePath : imagesCache.imageHashesCache.keySet()) {
+                    if (SimilarPhoto.hamDist(imagesCache.imageHashesCache.get(imagePath), templateHash) < 5) {
+                        matchingPictures.add(new GalleryCell(galleryCell.getTitle(), imagePath));
+                        Log.d("Similar:", imagePath + '\t' + galleryCell.getPath() +
+                                SimilarPhoto.hamDist(imagesCache.imageHashesCache.get(imagePath), templateHash));
                     }
                 }
-
-//                long templateHash = SimilarPhoto.getFingerPrint(scaleBitmap(templateBitmap));
-//
-//                for (File file : root.listFiles()) {
-//                    Bitmap fileBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-//                    long fileHash = SimilarPhoto.getFingerPrint(scaleBitmap(fileBitmap));
-//
-//                    if (SimilarPhoto.hamDist(fileHash, templateHash) < 5) {
-//                        matchingPictures.add(new GalleryCell(galleryCell.getTitle(), file.getAbsolutePath()));
-//                    }
-//                }
-
 
                 // send them to the gallery activity.
                 final Intent intent = new Intent(activity, GalleryActivity.class);
                 Bundle args = new Bundle();
                 args.putSerializable("ARRAYLIST", (Serializable) matchingPictures);
                 intent.putExtra("BUNDLE", args);
+                intent.putExtra("TITLE", galleryCell.getTitle());
                 activity.startActivity(intent);
             }
         };
@@ -78,15 +69,4 @@ public class FindSimilarPicturesOnClick implements ImageOnClickAdapter {
         return scaledBitmap;
     }
 
-    private ArrayList<GalleryCell> listAllImages(String pathName) {
-        ArrayList<GalleryCell> galleryFiles = new ArrayList<>();
-        File file = new File(pathName);
-        File[] files = file.listFiles();
-        if (files != null) {
-            for (File f : files) {
-                galleryFiles.add(new GalleryCell("Drake", f.getAbsolutePath()));
-            }
-        }
-        return galleryFiles;
-    }
 }

@@ -11,7 +11,10 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -31,11 +34,17 @@ public class GalleryActivity extends AppCompatActivity {
         for (Object object : imagesObjectsList) {
             imagesList.add((GalleryCell) object);
         }
-        showImages(imagesList);
+        String title = intent.getStringExtra("TITLE");
+        showImages(imagesList, title);
     }
 
-    private void showImages(ArrayList<GalleryCell> galleryCells) {
+    private void showImages(ArrayList<GalleryCell> galleryCells, String title) {
 
+        // set title:
+        TextView textView = (TextView) findViewById(R.id.gallery_title);
+        textView.setText("\"" + title + "\" results:");
+
+        // set images:
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.gallery);
         recyclerView.setHasFixedSize(true);
 

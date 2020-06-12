@@ -1,8 +1,6 @@
 package com.example.memesfilter;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,8 +57,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
     }
 
     private void SetImageFromPath(String path, ImageView imageView) {
-        Bitmap bMap;
-        new DownloadImageTask(imageView, activity).execute(path);
+        new LoadImageToViewTask(imageView, activity).execute(path);
 
     }
 
