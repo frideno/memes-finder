@@ -42,7 +42,7 @@ public class ProcessImageTask extends AsyncTask<String, Void, Void> {
         }
 
         // calculate image hash
-        long imageHash;
+        String imageHash;
         if (isMeme) {
             if (cache.imageHashesCache.containsKey(path)) {
                 imageHash = cache.imageHashesCache.get(path);

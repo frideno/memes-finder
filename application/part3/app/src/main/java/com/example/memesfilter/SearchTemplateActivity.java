@@ -27,29 +27,20 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class SearchTemplateActivity extends AppCompatActivity {
-    DatabaseReference dbRef;
-    ArrayList<GalleryCell> templates;
-    RecyclerView recyclerView;
-    SearchView searchView;
+    private DatabaseReference dbRef;
+    private ArrayList<GalleryCell> templates;
+    private RecyclerView recyclerView;
+    private SearchView searchView;
+
+    public SearchTemplateActivity() {
+        templates = new ArrayList<>();
+
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_template_activity);
 
-        // connect to firebase database of templates
-        dbRef = FirebaseDatabase.getInstance().getReference().child("templates");
-        recyclerView = findViewById(R.id.templates);
-        searchView = findViewById(R.id.searchView);
-
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
-        recyclerView.setLayoutManager(layoutManager);
-
-        // request gallery permissions.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
-        } else {
-            // startGallery();
-        }
     }
 
     @Override
@@ -68,6 +59,20 @@ public class SearchTemplateActivity extends AppCompatActivity {
     protected void onStart() {
         // todo: move to loaing screen activity:
         super.onStart();
+        // connect to firebase database of templates
+        dbRef = FirebaseDatabase.getInstance().getReference().child("templates");
+        recyclerView = findViewById(R.id.templates);
+        searchView = findViewById(R.id.searchView);
+
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // request gallery permissions.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
+        } else {
+            // startGallery();
+        }
 
         if (dbRef != null) {
             dbRef.addValueEventListener(new ValueEventListener() {
@@ -90,6 +95,7 @@ public class SearchTemplateActivity extends AppCompatActivity {
                 }
             });
         }
+
 
         if (searchView != null) {
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -118,6 +124,5 @@ public class SearchTemplateActivity extends AppCompatActivity {
         GalleryAdapter galleryAdapter = new GalleryAdapter(results, this, new FindSimilarPicturesOnClick());
         recyclerView.setAdapter(galleryAdapter);
     }
-
 
 }

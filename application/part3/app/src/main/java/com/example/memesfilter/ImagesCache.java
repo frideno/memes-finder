@@ -19,7 +19,7 @@ public class ImagesCache {
 
     public ConcurrentHashMap<String, Bitmap> bitmapsCache;
     public ConcurrentHashMap<String, Boolean> predictionsCache;
-    public ConcurrentHashMap<String, Long> imageHashesCache;
+    public ConcurrentHashMap<String, String> imageHashesCache;
 
 
 
