@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Memes Filter</string>
+    <string name="memes_filter">Memes Filter</string>
+    <string name="hello_user">Hello {user}!</string>
+    <string name="storage_memes_button_text">Find meme by template from storage</string>
+    <string name="popular_template_button_text">Find Meme by popular template</string>
+    <string name="all_memes_button_text">Find All memes</string>
+    <string name="title_activity_home_screen">HomeScreenActivity</string>
+    <string name="all_memes_headline">All memes</string>
+    <string name="home_page_hello_message_format">Hello %s !</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
 </resources>

@@ -18,33 +18,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class SearchTemplateActivity extends AppCompatActivity {
-    DatabaseReference dbRef;
-    ArrayList<GalleryCell> templates;
-    RecyclerView recyclerView;
-    SearchView searchView;
+    private DatabaseReference dbRef;
+    private ArrayList<GalleryCell> templates;
+    private RecyclerView recyclerView;
+    private SearchView searchView;
+
+    public SearchTemplateActivity() {
+        templates = new ArrayList<>();
+
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_template_activity);
+        setContentView(R.layout.activity_search_template);
 
-        // connect to firebase database of templates
-        dbRef = FirebaseDatabase.getInstance().getReference().child("templates");
-        recyclerView = findViewById(R.id.templates);
-        searchView = findViewById(R.id.searchView);
-
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
-        recyclerView.setLayoutManager(layoutManager);
-
-        // request gallery permissions.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
-        } else {
-            // startGallery();
-        }
     }
 
     @Override
@@ -61,7 +51,23 @@ public class SearchTemplateActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        // todo: move to loaing screen activity:
         super.onStart();
+        // connect to firebase database of templates
+        dbRef = FirebaseDatabase.getInstance().getReference().child("templates");
+        recyclerView = findViewById(R.id.templates);
+        searchView = findViewById(R.id.searchView);
+
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // request gallery permissions.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
+        } else {
+            // startGallery();
+        }
+
         if (dbRef != null) {
             dbRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -72,7 +78,7 @@ public class SearchTemplateActivity extends AppCompatActivity {
                             templates.add(ds.getValue(GalleryCell.class));
                         }
 
-                        GalleryAdapter galleryAdapter = new GalleryAdapter(templates, getApplicationContext(), new FindSimilarPicturesOnClick());
+                        GalleryAdapter galleryAdapter = new GalleryAdapter(templates, SearchTemplateActivity.this, new FindSimilarPicturesOnClick());
                         recyclerView.setAdapter(galleryAdapter);
                     }
                 }
@@ -83,6 +89,7 @@ public class SearchTemplateActivity extends AppCompatActivity {
                 }
             });
         }
+
 
         if (searchView != null) {
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -108,21 +115,8 @@ public class SearchTemplateActivity extends AppCompatActivity {
                 results.add(cell);
             }
         }
-        GalleryAdapter galleryAdapter = new GalleryAdapter(results, getApplicationContext(), new FindSimilarPicturesOnClick());
+        GalleryAdapter galleryAdapter = new GalleryAdapter(results, this, new FindSimilarPicturesOnClick());
         recyclerView.setAdapter(galleryAdapter);
-    }
-
-
-    private ArrayList<GalleryCell> listAllImages(String pathName) {
-        ArrayList<GalleryCell> galleryFiles = new ArrayList<>();
-        File file = new File(pathName);
-        File[] files = file.listFiles();
-        if (files != null) {
-            for (File f : files) {
-                galleryFiles.add(new GalleryCell("Drake", f.getAbsolutePath()));
-            }
-        }
-        return galleryFiles;
     }
 
 }

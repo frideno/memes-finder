@@ -1,8 +1,9 @@
 package com.example.memesfilter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
 public interface ImageOnClickAdapter {
-    View.OnClickListener getImageOnClickListener(Context context, GalleryCell galleryCell);
+    View.OnClickListener getImageOnClickListener(Activity activity, GalleryCell galleryCell);
 }
