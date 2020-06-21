@@ -6,30 +6,66 @@ import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ProcessImageTask extends AsyncTask<String, Void, Void> {
+
+    private DatabaseReference dbRef;
+    private FirebaseUser user;
+    private ImagesCache cache;
+
+    public ProcessImageTask() {
+        super();
+
+        // meanwhile get user cached data:
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        dbRef = FirebaseDatabase.getInstance().getReference().child("users-cached-data");
+        cache = ImagesCache.getInstance();
+    }
 
     protected Void doInBackground(String... paths) {
         Bitmap bmap;
         String path = paths[0];
-        ImagesCache cache = ImagesCache.getInstance();
 
+        ProcessedImageDataSchema processedImageData = new ProcessedImageDataSchema();
         //load image:
+        bmap = ImageUtils.loadFromGallery(path);
 
-        // if path is an http/https, download it. first check in cache.
-        if (path.startsWith("http")) {
-            if (cache.bitmapsCache.containsKey(path)) {
-                bmap = cache.bitmapsCache.get(path);
-                Log.println(Log.INFO, "Cache", path);
-            } else {
-                bmap = ImageUtils.downloadFromUrl(path);
-                cache.bitmapsCache.put(path, bmap);
+        // check cache db for prediction and image hash already:
+        if (dbRef.child(user.getUid()) != null) {
+            DatabaseReference imageDataRef = dbRef.child(user.getUid()).child(path.replace(".", "POINT").replace("/", "SLASH"));
+            if (imageDataRef != null) {
+                imageDataRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            String path = dataSnapshot.getKey().replace("POINT", ".").replace("SLASH", "/");
+                            ProcessedImageDataSchema imageData = dataSnapshot.getValue(ProcessedImageDataSchema.class);
+
+                            if (imageData.getPrediction() != null) {
+                                cache.predictionsCache.put(path, imageData.getPrediction());
+                            }
+                            if (imageData.getImageHash() != null) {
+                                cache.imageHashesCache.put(path, imageData.getImageHash());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
             }
-
-        }
-        // if its local:
-        else {
-            bmap = ImageUtils.loadFromGallery(path);
         }
 
         // check if image is meme or not using tensorflow light model.
@@ -41,6 +77,8 @@ public class ProcessImageTask extends AsyncTask<String, Void, Void> {
             cache.predictionsCache.put(path, isMeme);
         }
 
+        processedImageData.setPrediction(isMeme);
+
         // calculate image hash
         String imageHash;
         if (isMeme) {
@@ -49,9 +87,13 @@ public class ProcessImageTask extends AsyncTask<String, Void, Void> {
             } else {
                 imageHash = SimilarPhoto.getFingerPrint(bmap);
                 cache.imageHashesCache.put(path, imageHash);
+
+                processedImageData.setImageHash(imageHash);
             }
         }
 
+        // upload results to cache db.
+        dbRef.child(user.getUid()).child(path.replace(".", "POINT").replace("/", "SLASH")).setValue(processedImageData);
         return null;
     }
 

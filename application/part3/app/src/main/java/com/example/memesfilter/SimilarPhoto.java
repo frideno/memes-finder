@@ -108,11 +108,16 @@ public class SimilarPhoto {
             }
         }
 
-        return Color.argb(
-                (hasAlpha) ? (alphaBucket / pixelCount) : 255,
-                redBucket / pixelCount,
-                greenBucket / pixelCount,
-                blueBucket / pixelCount);
+        if (pixelCount <= 0) {
+            return Color.WHITE;
+
+        } else {
+            return Color.argb(
+                    (hasAlpha) ? (alphaBucket / pixelCount) : 255,
+                    redBucket / pixelCount,
+                    greenBucket / pixelCount,
+                    blueBucket / pixelCount);
+        }
     }
 
     private static double getGrayAvg(double[][] pixels) {
@@ -156,7 +161,7 @@ public class SimilarPhoto {
         int count = 0;
         for (int i = 0; i < length; i++) {
             if (finger1.charAt(i) != finger2.charAt(i)) {
-                count ++;
+                count++;
             }
         }
         return count;
