@@ -1,6 +1,7 @@
 package com.example.memesfilter;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoadScreenActivity extends AppCompatActivity {
-    private static int SPLASH = 3000;//length in miliseconds of lunch screen
+    private static int SPLASH = 5000;//length in miliseconds of lunch screen
     ImageView logo;
     ImageView logo_text;
 
@@ -30,11 +31,16 @@ public class LoadScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(LoadScreenActivity.this, HomeScreenActivity.class);
+                Intent intent = new Intent(LoadScreenActivity.this, SignInActivity.class);
                 startActivity(intent);
                 finish();
             }
         }, SPLASH);
+
+        // play music:
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.win_xp);
+        mp.start();
+
 
     }
 
