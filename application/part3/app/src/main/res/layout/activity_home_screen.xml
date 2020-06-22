@@ -53,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.671" />
+        app:layout_constraintVertical_bias="0.687" />
 
     <TextView
         android:id="@+id/home_screen_hello_message"
@@ -66,24 +66,24 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.35" />
 
     <TextView
         android:id="@+id/headline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="315dp"
+        android:layout_height="122dp"
+        android:fontFamily="@font/bangers"
         android:text="@string/memes_filter"
+        android:textAlignment="center"
         android:textColor="#730E0E"
         android:textColorHint="#E46565"
-        android:textSize="50sp"
+        android:textSize="60sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.169" />
+        app:layout_constraintVertical_bias="0.164" />
 </androidx.constraintlayout.widget.ConstraintLayout>
