@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Memes_Filter.iml" filepath="$PROJECT_DIR$/.idea/modules/Memes_Filter.iml" group="Memes_Filter" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Memes Filter/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/application.iml" filepath="$PROJECT_DIR$/.idea/application.iml" />
     </modules>
   </component>
 </project>

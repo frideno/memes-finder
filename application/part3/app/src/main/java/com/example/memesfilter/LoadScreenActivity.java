@@ -30,7 +30,7 @@ public class LoadScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(LoadScreenActivity.this, HomeScreenActivity.class);
+                Intent intent = new Intent(LoadScreenActivity.this, SearchTemplateActivity.class);
                 startActivity(intent);
                 finish();
             }

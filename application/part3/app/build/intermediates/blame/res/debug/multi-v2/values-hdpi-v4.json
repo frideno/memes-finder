@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Oren Schwartz\\Documents\\GitHub\\final-year-project\\application\\part3\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+            "outputFile": "/Users/omri/Documents/personal/final-project/application/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Oren Schwartz\\.gradle\\caches\\transforms-2\\files-2.1\\ab8fd7a2a88200ada28c05c97833585d\\appcompat-1.1.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "/Users/omri/.gradle/caches/transforms-2/files-2.1/ab8fd7a2a88200ada28c05c97833585d/appcompat-1.1.0/res/values-hdpi-v4/values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

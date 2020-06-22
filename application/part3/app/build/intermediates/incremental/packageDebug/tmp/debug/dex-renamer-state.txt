@@ -1,7 +1,7 @@
-#Mon Jun 22 01:58:15 IDT 2020
-base.0=C\:\\Users\\Oren Schwartz\\Documents\\GitHub\\final-year-project\\application\\part3\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+#Sun Jun 07 23:05:58 IDT 2020
+base.0=/Users/omri/Documents/personal/final-project/application/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=C\:\\Users\\Oren Schwartz\\Documents\\GitHub\\final-year-project\\application\\part3\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
+base.1=/Users/omri/Documents/personal/final-project/application/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
