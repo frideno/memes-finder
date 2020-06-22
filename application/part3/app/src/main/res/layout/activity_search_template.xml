@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gallery_background"
     android:orientation="vertical"
     tools:context=".SearchTemplateActivity">
 
@@ -13,8 +14,9 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_margin="10dp"
         android:padding="10dp"
-        app:queryHint="enter template name"
-        />
+        android:background="@color/gallery_background_light"
+        app:queryHint="enter template name" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/templates"
         android:layout_width="match_parent"
