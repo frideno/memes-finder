@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -26,15 +28,12 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     private final int GALLERY_REQUEST_CODE = 123;
 
-    private String userName;
-
-    public HomeScreenActivity() {
-        this.userName = "Joe Smith";
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_home_screen);
 
     }
@@ -47,6 +46,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         startService(intent);
 
         TextView textView = (TextView) findViewById(R.id.home_screen_hello_message);
+
+        String userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         textView.setText(String.format(getResources().getString(R.string.home_page_hello_message_format), userName));
 
         findViewById(R.id.home_page_popular_template_button).setOnClickListener(
