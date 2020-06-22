@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Oren Schwartz\\Documents\\GitHub\\final-year-project\\application\\part3\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v25\\values-v25.xml",
+            "outputFile": "/Users/omri/Documents/personal/final-project/application/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Oren Schwartz\\.gradle\\caches\\transforms-2\\files-2.1\\ab8fd7a2a88200ada28c05c97833585d\\appcompat-1.1.0\\res\\values-v25\\values-v25.xml",
+                    "source": "/Users/omri/.gradle/caches/transforms-2/files-2.1/ab8fd7a2a88200ada28c05c97833585d/appcompat-1.1.0/res/values-v25/values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

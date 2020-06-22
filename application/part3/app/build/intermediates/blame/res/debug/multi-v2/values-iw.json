@@ -1,27 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Oren Schwartz\\Documents\\GitHub\\final-year-project\\application\\part3\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-iw\\values-iw.xml",
+            "outputFile": "/Users/omri/Documents/personal/final-project/application/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw/values-iw.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Oren Schwartz\\.gradle\\caches\\transforms-2\\files-2.1\\ec31b9b22bd4138aeb358271cbb7d7d7\\jetified-play-services-basement-17.1.1\\res\\values-iw\\values.xml",
+                    "source": "/Users/omri/.gradle/caches/transforms-2/files-2.1/426b41a412186af36330cd4ba591c080/core-1.1.0/res/values-iw/values-iw.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "176",
-                        "endOffsets": "423"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "37",
+                        "startLines": "48",
                         "startColumns": "4",
-                        "startOffsets": "3884",
-                        "endColumns": "176",
-                        "endOffsets": "4056"
+                        "startOffsets": "5401",
+                        "endColumns": "100",
+                        "endOffsets": "5497"
                     }
                 },
                 {
-                    "source": "C:\\Users\\Oren Schwartz\\.gradle\\caches\\transforms-2\\files-2.1\\ab8fd7a2a88200ada28c05c97833585d\\appcompat-1.1.0\\res\\values-iw\\values-iw.xml",
+                    "source": "/Users/omri/.gradle/caches/transforms-2/files-2.1/ab8fd7a2a88200ada28c05c97833585d/appcompat-1.1.0/res/values-iw/values-iw.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -30,15 +30,15 @@
                         "endOffsets": "205,305,413,497,599,715,794,873,964,1057,1151,1245,1346,1439,1534,1627,1718,1810,1890,1995,2098,2196,2301,2403,2505,2659,2756,2837"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,49",
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,47",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,210,310,418,502,604,720,799,878,969,1062,1156,1250,1351,1444,1539,1632,1723,1815,1895,2000,2103,2201,2306,2408,2510,2664,5546",
+                        "startOffsets": "105,210,310,418,502,604,720,799,878,969,1062,1156,1250,1351,1444,1539,1632,1723,1815,1895,2000,2103,2201,2306,2408,2510,2664,5320",
                         "endColumns": "104,99,107,83,101,115,78,78,90,92,93,93,100,92,94,92,90,91,79,104,102,97,104,101,101,153,96,80",
-                        "endOffsets": "205,305,413,497,599,715,794,873,964,1057,1151,1245,1346,1439,1534,1627,1718,1810,1890,1995,2098,2196,2301,2403,2505,2659,2756,5622"
+                        "endOffsets": "205,305,413,497,599,715,794,873,964,1057,1151,1245,1346,1439,1534,1627,1718,1810,1890,1995,2098,2196,2301,2403,2505,2659,2756,5396"
                     }
                 },
                 {
-                    "source": "C:\\Users\\Oren Schwartz\\.gradle\\caches\\transforms-2\\files-2.1\\bf2bea7e8bdb47c3ba0c5cb7ed2b8284\\jetified-play-services-base-17.1.0\\res\\values-iw\\values.xml",
+                    "source": "/Users/omri/.gradle/caches/transforms-2/files-2.1/8073dd5f6a1e18eead1ec1c9796e6e96/jetified-play-services-base-17.0.0/res/values-iw/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -55,37 +55,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Oren Schwartz\\.gradle\\caches\\transforms-2\\files-2.1\\426b41a412186af36330cd4ba591c080\\core-1.1.0\\res\\values-iw\\values-iw.xml",
+                    "source": "/Users/omri/.gradle/caches/transforms-2/files-2.1/d241a53f188ac92cfadf17d9dd615ec2/jetified-play-services-basement-17.0.0/res/values-iw/values.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "176",
+                        "endOffsets": "423"
                     },
                     "to": {
-                        "startLines": "50",
+                        "startLines": "37",
                         "startColumns": "4",
-                        "startOffsets": "5627",
-                        "endColumns": "100",
-                        "endOffsets": "5723"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Oren Schwartz\\.gradle\\caches\\transforms-2\\files-2.1\\ea2bbcb1619801cb0d154a04d9df42cc\\navigation-ui-2.1.0\\res\\values-iw\\values-iw.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,161",
-                        "endColumns": "105,119",
-                        "endOffsets": "156,276"
-                    },
-                    "to": {
-                        "startLines": "47,48",
-                        "startColumns": "4,4",
-                        "startOffsets": "5320,5426",
-                        "endColumns": "105,119",
-                        "endOffsets": "5421,5541"
+                        "startOffsets": "3884",
+                        "endColumns": "176",
+                        "endOffsets": "4056"
                     }
                 }
             ]
