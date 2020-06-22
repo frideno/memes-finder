@@ -14,7 +14,8 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_margin="10dp"
         android:padding="10dp"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/white"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gallery"
         android:layout_width="match_parent"

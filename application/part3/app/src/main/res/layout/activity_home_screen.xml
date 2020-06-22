@@ -9,10 +9,11 @@
 
     <TextView
         android:id="@+id/home_page_storage_template_button"
-        android:layout_width="336dp"
-        android:layout_height="71dp"
+        android:layout_width="366dp"
+        android:layout_height="49dp"
         android:background="@drawable/roundedbutton"
         android:backgroundTint="@color/button_color"
+        android:fontFamily="@font/bangers"
         android:radius="30dp"
         android:text="@string/storage_memes_button_text"
         android:textAlignment="center"
@@ -21,15 +22,15 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.796" />
+        app:layout_constraintVertical_bias="0.774" />
 
     <TextView
         android:id="@+id/home_page_all_memes_button"
-        android:layout_width="193dp"
-        android:layout_height="37dp"
+        android:layout_width="366dp"
+        android:layout_height="49dp"
         android:background="@drawable/roundedbutton"
         android:backgroundTint="@color/button_color"
         android:radius="30dp"
@@ -38,9 +39,10 @@
         android:textColor="#B53737"
         android:textColorHint="#E46565"
         android:textSize="25sp"
+        android:fontFamily="@font/bangers"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.899" />
@@ -57,29 +59,13 @@
         android:textColor="#B53737"
         android:textColorHint="#E46565"
         android:textSize="25sp"
+        android:fontFamily="@font/bangers"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.658" />
-
-    <TextView
-        android:id="@+id/home_screen_hello_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/hello_user"
-        android:textAlignment="center"
-        android:textColor="#FFF200"
-        android:textColorHint="#E46565"
-        android:textSize="33sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.343" />
 
     <TextView
         android:id="@+id/headline"
@@ -96,5 +82,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.132" />
+
+    <TextView
+        android:id="@+id/home_screen_hello_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/hello_user"
+        android:textAlignment="center"
+        android:textColor="#FFF200"
+        android:textColorHint="#E46565"
+        android:textSize="33sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.315" />
 </androidx.constraintlayout.widget.ConstraintLayout>
