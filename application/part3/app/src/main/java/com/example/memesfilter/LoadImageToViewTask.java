@@ -8,9 +8,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.AsyncTask;
+import android.os.Process;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.google.firebase.database.core.ThreadBackgroundExecutor;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;

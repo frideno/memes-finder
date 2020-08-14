@@ -15,5 +15,6 @@
     <color name="white">#ffffff</color>>
     <color name="gallery_background_light">#676565</color>
     <color name="gallery_background">#121212</color>
+    <color name="selected_color">#D3D3D3</color>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.memesfilter;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class GalleryCell implements Serializable {
     private String title;
@@ -29,5 +30,19 @@ public class GalleryCell implements Serializable {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GalleryCell)) return false;
+        GalleryCell that = (GalleryCell) o;
+        return Objects.equals(title, that.title) &&
+                Objects.equals(path, that.path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, path);
     }
 }

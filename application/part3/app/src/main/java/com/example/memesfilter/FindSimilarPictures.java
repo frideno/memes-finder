@@ -12,8 +12,7 @@ import java.util.ArrayList;
 
 public class FindSimilarPictures {
 
-    public void searchAndShow(Activity activity, Bitmap bmap, String title) {
-
+    public ArrayList<GalleryCell> find(Bitmap bmap, String title) {
         final String templateHash = SimilarPhoto.getFingerPrint(bmap);
 
         // find the images that are similar.
@@ -21,18 +20,16 @@ public class FindSimilarPictures {
 
         ImagesCache imagesCache = ImagesCache.getInstance();
         for (String imagePath : imagesCache.imageHashesCache.keySet()) {
-            if (SimilarPhoto.hamDist(imagesCache.imageHashesCache.get(imagePath), templateHash) < SimilarPhoto.MAX_SIMILAR_DIFF) {
-                matchingPictures.add(new GalleryCell(title, imagePath));
+            if (Utils.isFileValid(imagePath)) {
+                if (SimilarPhoto.hamDist(imagesCache.imageHashesCache.get(imagePath), templateHash) < SimilarPhoto.MAX_SIMILAR_DIFF) {
+                    if (imagesCache.predictionsCache.get(imagePath)) {
+                        matchingPictures.add(new GalleryCell(title, imagePath));
+                    }
+                }
             }
         }
 
-        // send them to the gallery activity.
-        final Intent intent = new Intent(activity, GalleryActivity.class);
-        Bundle args = new Bundle();
-        args.putSerializable("ARRAYLIST", (Serializable) matchingPictures);
-        intent.putExtra("BUNDLE", args);
-        intent.putExtra("TITLE", title);
-        activity.startActivity(intent);
+        return matchingPictures;
     }
 
 }

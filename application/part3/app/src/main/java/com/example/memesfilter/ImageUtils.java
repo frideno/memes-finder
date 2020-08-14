@@ -36,6 +36,7 @@ public class ImageUtils {
             connection.connect();
             InputStream input = connection.getInputStream();
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            Log.i("Downloaded", inputUrl);
             return myBitmap;
         } catch (IOException e) {
             // Log exception

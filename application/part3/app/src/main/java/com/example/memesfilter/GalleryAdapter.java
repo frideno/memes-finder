@@ -10,14 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
-    private ArrayList<GalleryCell> galleryCells;
+    private List<GalleryCell> galleryCells;
     private Activity activity;
     private ImageOnClickAdapter imageOnClickAdapter;
 
 
-    public GalleryAdapter(ArrayList<GalleryCell> galleryCells, Activity activity, ImageOnClickAdapter imageOnClickAdapter) {
+    public GalleryAdapter(List<GalleryCell> galleryCells, Activity activity, ImageOnClickAdapter imageOnClickAdapter) {
         this.galleryCells = galleryCells;
         this.activity = activity;
         this.imageOnClickAdapter = imageOnClickAdapter;
@@ -54,6 +55,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
             super(view);
             image = (ImageView) view.findViewById(R.id.gallery_image);
         }
+
+
     }
 
     private void SetImageFromPath(String path, ImageView imageView) {

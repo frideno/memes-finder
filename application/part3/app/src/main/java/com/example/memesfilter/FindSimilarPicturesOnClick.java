@@ -29,11 +29,23 @@ public class FindSimilarPicturesOnClick implements ImageOnClickAdapter {
     @Override
     public View.OnClickListener getImageOnClickListener(final Activity activity, final GalleryCell galleryCell) {
 
-        return new View.OnClickListener() {
+        final FindSimilarPictures finder = new FindSimilarPictures();
+        ImagesCalculator matchintImagesCalculator = new ImagesCalculator() {
+            @Override
+            public List<GalleryCell> getImages() {
+                return finder.find(ImagesCache.getInstance().bitmapsCache.get(galleryCell.getPath()), galleryCell.getTitle());
+            }
+        };
+        final String imageCalculatorKey = ImagesCalculatorManager.getInstance().addCalculator(matchintImagesCalculator);
 
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new FindSimilarPictures().searchAndShow(activity, ImagesCache.getInstance().bitmapsCache.get(galleryCell.getPath()), galleryCell.getTitle());
+
+                final Intent intent = new Intent(activity, RefreshedGalleryActivity.class);
+                intent.putExtra("IMAGE_CALCULATOR_KEY", imageCalculatorKey);
+                intent.putExtra("TITLE", galleryCell.getTitle());
+                activity.startActivity(intent);
             }
         };
 

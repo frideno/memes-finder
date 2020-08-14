@@ -3,6 +3,7 @@ package com.example.memesfilter;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.AsyncTask;
+import android.os.Process;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
@@ -18,24 +19,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ProcessImageTask extends AsyncTask<String, Void, Void> {
+public class ProcessImageTask implements Runnable {
 
     private DatabaseReference dbRef;
     private FirebaseUser user;
     private ImagesCache cache;
+    private Classify classifier;
+    private String path;
 
-    public ProcessImageTask() {
-        super();
+    public ProcessImageTask(Classify classifier, String path) {
 
-        // meanwhile get user cached data:
         user = FirebaseAuth.getInstance().getCurrentUser();
         dbRef = FirebaseDatabase.getInstance().getReference().child("users-cached-data");
         cache = ImagesCache.getInstance();
+        this.classifier = classifier;
+        this.path = path;
     }
 
-    protected Void doInBackground(String... paths) {
+    public void run() {
         Bitmap bmap;
-        String path = paths[0];
 
         ProcessedImageDataSchema processedImageData = new ProcessedImageDataSchema();
         //load image:
@@ -73,7 +75,9 @@ public class ProcessImageTask extends AsyncTask<String, Void, Void> {
         if (cache.predictionsCache.containsKey(path)) {
             isMeme = cache.predictionsCache.get(path);
         } else {
-            isMeme = true;
+            String memeClass = classifier.classify(bmap);
+            isMeme = memeClass.equals("Yes");
+            Log.i("Predictor", path + ": " + memeClass);
             cache.predictionsCache.put(path, isMeme);
         }
 
@@ -94,7 +98,6 @@ public class ProcessImageTask extends AsyncTask<String, Void, Void> {
 
         // upload results to cache db.
         dbRef.child(user.getUid()).child(path.replace(".", "POINT").replace("/", "SLASH")).setValue(processedImageData);
-        return null;
     }
 
 }
