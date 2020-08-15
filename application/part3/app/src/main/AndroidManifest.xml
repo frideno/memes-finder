@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.memesfilter">
+    package="com.example.memesfinder">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -16,13 +16,13 @@
         android:theme="@style/AppTheme">
 
         <service
-            android:name=".ProcessImagesService"
+            android:name="com.example.memesfinder.ProcessImagesService"
             android:enabled="true"
             android:exported="true" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.memesfilter.provider"
+            android:authorities="com.example.memesfinder.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -31,7 +31,7 @@
         </provider>
 
         <activity
-            android:name=".HomeScreenActivity"
+            android:name="com.example.memesfinder.HomeScreenActivity"
             android:label="@string/title_activity_home_screen"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -40,34 +40,34 @@
         </activity>
 
         <activity
-            android:name=".SearchTemplateActivity"
+            android:name="com.example.memesfinder.SearchTemplateActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".gallery.GalleryActivity">
+        <activity android:name="com.example.memesfinder.gallery.GalleryActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".gallery.RefreshedGalleryActivity">
+        <activity android:name="com.example.memesfinder.gallery.RefreshedGalleryActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
 
-        <activity android:name=".load_animation.LoadScreenActivity">
+        <activity android:name="com.example.memesfinder.load_animation.LoadScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".SignInActivity">
+        <activity android:name="com.example.memesfinder.SignInActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
