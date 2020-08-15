@@ -66,8 +66,8 @@ public class SignInActivity extends AppCompatActivity {
                 // ...
             } else {
                 // Sign in failed.
-                Toast.makeText(this, "FAILED TO SIGN IN!", Toast.LENGTH_SHORT).show();
-
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(0);
             }
         }
     }

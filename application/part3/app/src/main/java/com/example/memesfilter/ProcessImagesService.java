@@ -2,6 +2,7 @@ package com.example.memesfilter;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.IBinder;
 
@@ -21,21 +22,30 @@ public class ProcessImagesService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
         super.onStartCommand(intent, flags, startId);
 
-        final ProcessingManager processingManager = new ProcessingManager(this);
+        final ProcessingManager processingManager = new ProcessingManager(ProcessImagesService.this);
 
-        processingManager.initCached();
-        final ArrayList<String> cachedImages = new ArrayList<String>(ImagesCache.getInstance().predictionsCache.keySet());
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
 
-        final ArrayList<String> galleryImagesPaths = new ArrayList<>();
-        for (String path : IMAGES_DIRS_PATHS) {
-            galleryImagesPaths.addAll(ProcessImagesService.listAllImages(Environment.getExternalStorageDirectory() + "/" + path));
-        }
+                processingManager.initCached();
+                final ArrayList<String> cachedImages = new ArrayList<String>(ImagesCache.getInstance().predictionsCache.keySet());
 
-        galleryImagesPaths.removeAll(cachedImages);
+                final ArrayList<String> galleryImagesPaths = new ArrayList<>();
+                for (String path : IMAGES_DIRS_PATHS) {
+                    galleryImagesPaths.addAll(ProcessImagesService.listAllImages(Environment.getExternalStorageDirectory() + "/" + path));
+                }
 
-        processingManager.startProcessing(galleryImagesPaths);
+                galleryImagesPaths.removeAll(cachedImages);
+
+                processingManager.startProcessing(galleryImagesPaths);
+
+                return null;
+            }
+        }.execute();
 
         return Service.START_STICKY;
     }
