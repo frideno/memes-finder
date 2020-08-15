@@ -11,7 +11,7 @@ public class SimilarImage {
     private static final int size1 = 64;
     private static final int size2 = 16;
 
-    public static final int MAX_SIMILAR_DIFF = (size2 * size2) / 4;
+    public static final int MAX_SIMILAR_DIFF = (size2 * size2) / 5;
 
     public static String getFingerPrint(Bitmap bitmap) {
         bitmap = Bitmap.createScaledBitmap(bitmap, size1, size1, false);

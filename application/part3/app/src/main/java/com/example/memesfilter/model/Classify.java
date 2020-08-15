@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.arch.core.util.Function;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.tensorflow.lite.DataType;
@@ -43,19 +44,21 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.TreeMap;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.function.DoubleUnaryOperator;
 
 public class Classify {
 
     private static final String MODEL_NAME = "model.tflite";
 
-    // presets for rgb conversion
-    private static final int RESULTS_TO_SHOW = 3;
+    private static final double PROB_THRESHOLD = 0.7;
 
     private static final float PROBABILITY_MEAN = 0.0f;
     private static final float PROBABILITY_STD = 1.0f;
@@ -128,11 +131,20 @@ public class Classify {
                         .getMapWithFloatValue();
 
 
-        Map.Entry<String, Float> maxEntry = null;
+        List<Float> probabilites = new ArrayList<>(labeledProbability.values());
+
+        Map<String, Double> softmaxProbabilites = new TreeMap<>();
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet())
         {
-            if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0)
+            softmaxProbabilites.put(entry.getKey(), softmax(entry.getValue(), probabilites));
+        }
+
+
+        Map.Entry<String, Double> maxEntry = null;
+        for (Map.Entry<String, Double> entry : softmaxProbabilites.entrySet())
+        {
+            if (entry.getValue() > this.PROB_THRESHOLD)
             {
                 maxEntry = entry;
             }
@@ -189,5 +201,13 @@ public class Classify {
 
     protected TensorOperator getPostprocessNormalizeOp() {
         return new NormalizeOp(PROBABILITY_MEAN, PROBABILITY_STD);
+    }
+
+    private double softmax(Float input, List<Float> allInputs) {
+        double total = 0;
+        for (Float f : allInputs) {
+            total += Math.exp(f);
+        }
+        return Math.exp(input) / total;
     }
 }

@@ -30,7 +30,7 @@ public class ProcessingManager {
     private FirebaseCacheDBHandler cacheDBHandler;
     private LocalCacheDBHandler localCacheDBHandler;
 
-    private final int NUM_THREADS = 8;
+    private final int NUM_THREADS = 4;
 
     private Consumer<Pair<String, ProcessedImageDataSchema>> getCacheConsumer;
     private Consumer<Pair<String, ProcessedImageDataSchema>> setCacheConsumer;
@@ -64,15 +64,16 @@ public class ProcessingManager {
 
             @Override
             public void accept(Pair<String, ProcessedImageDataSchema> entry) {
-                cacheDBHandler.setProcessed(entry);
                 localCacheDBHandler.setProcessed(entry);
+                cacheDBHandler.setProcessed(entry);
             }
         };
     }
 
     public void initCached() {
-        cacheDBHandler.getProcessed(getCacheConsumer);
         localCacheDBHandler.getProcessed(getCacheConsumer);
+        cacheDBHandler.getProcessed(getCacheConsumer);
+
     }
 
     public void startProcessing(final List<String> imagesPathsToProcess) {

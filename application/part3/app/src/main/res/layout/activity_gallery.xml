@@ -13,7 +13,8 @@
         android:layout_height="73dp"
         android:layout_margin="10dp"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:textAlignment="center">
 
         <TextView
             android:id="@+id/gallery_title"

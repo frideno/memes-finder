@@ -8,6 +8,8 @@
     <string name="title_activity_home_screen">HomeScreenActivity</string>
     <string name="all_memes_headline">All memes</string>
     <string name="home_page_hello_message_format">Welcome back, %s !</string>
+    <string name="home_page_hello_message_new_format">Welcome !</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

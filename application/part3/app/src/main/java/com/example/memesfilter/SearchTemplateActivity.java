@@ -55,6 +55,7 @@ public class SearchTemplateActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(null);
 
 
         if (dbRef != null) {

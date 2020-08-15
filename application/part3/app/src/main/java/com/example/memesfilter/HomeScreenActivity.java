@@ -59,6 +59,9 @@ public class HomeScreenActivity extends AppCompatActivity {
         String userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         String greeting;
         if (userName != null) {
+            if (userName.length() == 0) {
+                userName = "guest";
+            }
             greeting = String.format(getResources().getString(R.string.home_page_hello_message_format), userName);
         } else {
             greeting = "Welcome!";
