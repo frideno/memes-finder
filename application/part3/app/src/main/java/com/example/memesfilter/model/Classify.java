@@ -1,4 +1,4 @@
-package com.example.memesfilter;
+package com.example.memesfilter.model;
 
 import android.app.Activity;
 import android.content.Intent;

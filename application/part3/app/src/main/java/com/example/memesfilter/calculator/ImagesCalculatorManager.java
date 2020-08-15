@@ -1,4 +1,4 @@
-package com.example.memesfilter;
+package com.example.memesfilter.calculator;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.UUID;

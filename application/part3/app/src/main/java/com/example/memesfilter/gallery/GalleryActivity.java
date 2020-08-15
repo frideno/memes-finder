@@ -1,4 +1,4 @@
-package com.example.memesfilter;
+package com.example.memesfilter.gallery;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,20 +7,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.drm.DrmStore;
 import android.os.Bundle;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AbsListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.example.memesfilter.R;
+import com.example.memesfilter.OpenImageOnClick;
+import com.example.memesfilter.calculator.ImagesCalculator;
+import com.example.memesfilter.calculator.ImagesCalculatorManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GalleryActivity extends AppCompatActivity {
@@ -75,7 +72,7 @@ public class GalleryActivity extends AppCompatActivity {
             noteTextView.setText("");
         }
 
-        DeleteableGalleryAdapter adapter = new DeleteableGalleryAdapter(galleryCells, this, new ShareImageOnClick());
+        DeleteableGalleryAdapter adapter = new DeleteableGalleryAdapter(galleryCells, this, new OpenImageOnClick());
         recyclerView.setAdapter(adapter);
 
     }

@@ -1,9 +1,7 @@
-package com.example.memesfilter;
+package com.example.memesfilter.gallery;
 
-import android.os.Bundle;
 import android.os.Handler;
 
-import java.util.Collections;
 import java.util.List;
 
 public class RefreshedGalleryActivity extends GalleryActivity {

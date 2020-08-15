@@ -1,7 +1,6 @@
-package com.example.memesfilter;
+package com.example.memesfilter.gallery;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 
 public interface ImageOnClickAdapter {

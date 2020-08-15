@@ -1,4 +1,4 @@
-package com.example.memesfilter;
+package com.example.memesfilter.utils;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Utils {
+public class FileUtils {
 
     public static boolean isFileValid(String fileFullPath) {
         File f = new File(fileFullPath);

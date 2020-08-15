@@ -47,20 +47,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".GalleryActivity">
+        <activity android:name=".gallery.GalleryActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".RefreshedGalleryActivity">
+        <activity android:name=".gallery.RefreshedGalleryActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
 
-        <activity android:name=".LoadScreenActivity">
+        <activity android:name=".load_animation.LoadScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

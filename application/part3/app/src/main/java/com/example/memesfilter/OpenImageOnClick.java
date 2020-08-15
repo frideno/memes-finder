@@ -8,12 +8,15 @@ import android.view.View;
 import androidx.core.app.ShareCompat;
 import androidx.core.content.FileProvider;
 
+import com.example.memesfilter.gallery.GalleryCell;
+import com.example.memesfilter.gallery.ImageOnClickAdapter;
+
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.util.Objects;
 
-public class ShareImageOnClick implements ImageOnClickAdapter{
+public class OpenImageOnClick implements ImageOnClickAdapter {
     @Override
     public View.OnClickListener getImageOnClickListener(final Activity activity, final GalleryCell galleryCell) {
 

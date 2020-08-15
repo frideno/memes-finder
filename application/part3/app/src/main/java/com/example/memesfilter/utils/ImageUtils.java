@@ -1,4 +1,4 @@
-package com.example.memesfilter;
+package com.example.memesfilter.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

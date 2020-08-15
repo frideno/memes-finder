@@ -1,4 +1,4 @@
-package com.example.memesfilter;
+package com.example.memesfilter.gallery;
 
 import java.io.Serializable;
 import java.util.Objects;

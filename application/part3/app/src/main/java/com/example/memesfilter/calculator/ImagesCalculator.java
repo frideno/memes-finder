@@ -1,4 +1,6 @@
-package com.example.memesfilter;
+package com.example.memesfilter.calculator;
+
+import com.example.memesfilter.gallery.GalleryCell;
 
 import java.io.Serializable;
 import java.util.List;

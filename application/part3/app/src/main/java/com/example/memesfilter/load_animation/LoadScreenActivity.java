@@ -1,4 +1,4 @@
-package com.example.memesfilter;
+package com.example.memesfilter.load_animation;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -9,6 +9,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.memesfilter.R;
+import com.example.memesfilter.SignInActivity;
 
 public class LoadScreenActivity extends AppCompatActivity {
     private static int SPLASH = 5000;//length in miliseconds of lunch screen

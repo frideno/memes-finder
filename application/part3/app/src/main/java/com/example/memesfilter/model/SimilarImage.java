@@ -1,20 +1,13 @@
-package com.example.memesfilter;
+package com.example.memesfilter.model;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.provider.MediaStore;
 import android.util.Log;
 
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
+public class SimilarImage {
 
-public class SimilarPhoto {
-
-    private static final String TAG = SimilarPhoto.class.getSimpleName();
+    private static final String TAG = SimilarImage.class.getSimpleName();
     private static final int size1 = 64;
     private static final int size2 = 16;
 

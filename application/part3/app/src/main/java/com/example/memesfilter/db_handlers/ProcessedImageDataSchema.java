@@ -1,4 +1,4 @@
-package com.example.memesfilter;
+package com.example.memesfilter.db_handlers;
 
 public class ProcessedImageDataSchema {
     private Boolean prediction;

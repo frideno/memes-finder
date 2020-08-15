@@ -1,4 +1,4 @@
-package com.example.memesfilter;
+package com.example.memesfilter.gallery;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.memesfilter.LoadImageToViewTask;
+import com.example.memesfilter.R;
+
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {

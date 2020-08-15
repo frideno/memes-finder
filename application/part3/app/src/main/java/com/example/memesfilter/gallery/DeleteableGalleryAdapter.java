@@ -1,12 +1,9 @@
-package com.example.memesfilter;
+package com.example.memesfilter.gallery;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.drm.DrmStore;
-import android.graphics.Color;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,17 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.memesfilter.LoadImageToViewTask;
+import com.example.memesfilter.R;
+import com.example.memesfilter.utils.FileUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.provider.CalendarContract.CalendarCache.URI;
 
 public class DeleteableGalleryAdapter extends RecyclerView.Adapter<DeleteableGalleryAdapter.ViewHolder> {
     private List<GalleryCell> galleryCells;
@@ -90,7 +88,7 @@ public class DeleteableGalleryAdapter extends RecyclerView.Adapter<DeleteableGal
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && activity.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==  PackageManager.PERMISSION_GRANTED) {
                             for (GalleryCell selectedCell : selectedCells) {
-                                Utils.deleteFile(selectedCell.getPath());
+                                FileUtils.deleteFile(selectedCell.getPath());
                                 galleryCells.remove(selectedCell);
                             }
 
@@ -118,7 +116,7 @@ public class DeleteableGalleryAdapter extends RecyclerView.Adapter<DeleteableGal
                     filePathsToShare.add(selectedCell.getPath());
                 }
 
-                Utils.shareFiles(activity, filePathsToShare);
+                FileUtils.shareFiles(activity, filePathsToShare);
             }
 
 

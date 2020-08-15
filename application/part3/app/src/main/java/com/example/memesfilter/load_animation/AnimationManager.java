@@ -1,10 +1,12 @@
-package com.example.memesfilter;
+package com.example.memesfilter.load_animation;
 
 import android.content.Context;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import com.example.memesfilter.R;
 
 public class AnimationManager {
     private static Animation animation;

@@ -7,22 +7,23 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.memesfilter.calculator.ImagesCalculator;
+import com.example.memesfilter.calculator.ImagesCalculatorManager;
+import com.example.memesfilter.gallery.GalleryActivity;
+import com.example.memesfilter.gallery.GalleryCell;
+import com.example.memesfilter.model.FindSimilarImages;
+import com.example.memesfilter.utils.FileUtils;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import android.os.FileUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         if (!processedYet) {
             Intent intent = new Intent(this, ProcessImagesService.class);
             startService(intent);
+            processedYet = true;
         }
 
         TextView greetingTextView = (TextView) findViewById(R.id.home_screen_hello_message);
@@ -78,7 +80,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 ImagesCache imagesCache = ImagesCache.getInstance();
 
                 for (String imagePath : imagesCache.predictionsCache.keySet()) {
-                    if (imagesCache.predictionsCache.get(imagePath) && Utils.isFileValid(imagePath)) {
+                    if (imagesCache.predictionsCache.get(imagePath) && FileUtils.isFileValid(imagePath)) {
                         allMemes.add(new GalleryCell("", imagePath));
                     }
                 }
@@ -134,7 +136,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                                 Uri selectedImageUri = data.getData();
                                 Bitmap selectedImageBmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImageUri));
 
-                                FindSimilarPictures similarFinder = new FindSimilarPictures();
+                                FindSimilarImages similarFinder = new FindSimilarImages();
                                 return similarFinder.find(selectedImageBmap, "Selected Image");
 
                             } catch (IOException e) {
