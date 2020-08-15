@@ -4,6 +4,8 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
+    ndkVersion "21.3.6528147"
+
 
     defaultConfig {
         applicationId "com.example.memesfilter"
@@ -11,8 +13,8 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -20,6 +22,18 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+    }
+
+    aaptOptions {
+        noCompress "tflite"
+    }
+
+}
+
+repositories {
+    maven {
+        url 'https://google.bintray.com/tensorflow'
     }
 }
 
@@ -43,4 +57,13 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
     implementation 'com.facebook.android:facebook-login:[5,6)'
 
+    implementation('org.tensorflow:tensorflow-lite:0.0.0-nightly') { changing = true }
+    implementation('org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly') { changing = true }
+    implementation('org.tensorflow:tensorflow-lite-support:0.0.0-nightly') { changing = true }
+
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+}
+
+task download_model {
+    ant.get(src: 'https://drive.google.com/u/0/uc?id=1gqrpe8gEz0xT2dPhkXlEg88bMBpv0Yim&export=download', dest: 'src/main/assets/model.tflite', skipexisting: 'true')
 }

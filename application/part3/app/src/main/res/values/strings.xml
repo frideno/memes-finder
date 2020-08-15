@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Memes Filter</string>
     <string name="memes_filter">Memes Filter</string>
-    <string name="hello_user">Hello {user}!</string>
+    <string name="hello_user"></string>
     <string name="storage_memes_button_text">Find meme by template from storage</string>
     <string name="popular_template_button_text">Find Meme by popular template</string>
     <string name="all_memes_button_text">Find All memes</string>
     <string name="title_activity_home_screen">HomeScreenActivity</string>
     <string name="all_memes_headline">All memes</string>
-    <string name="home_page_hello_message_format">Hello %s !</string>
+    <string name="home_page_hello_message_format">Welcome back, %s !</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -23,5 +23,7 @@
 
     <string name="facebook_application_id" translatable="false">1402506486625649</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb1402506486625649</string>
+    <string name="no_results">No results found</string>
+    <string name="loading">Loading...</string>
 
 </resources>

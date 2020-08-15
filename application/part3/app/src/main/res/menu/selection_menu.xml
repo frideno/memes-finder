@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/select_menu">
+
+
+    <item
+        android:id="@+id/select_menu_delete"
+        android:icon="@drawable/ic_delete"
+        android:title="" />
+    <item
+        android:id="@+id/select_menu_share"
+        android:icon="@drawable/ic_share"
+        android:title="Option 2" />
+</menu>

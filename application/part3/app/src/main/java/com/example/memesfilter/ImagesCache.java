@@ -3,6 +3,7 @@ package com.example.memesfilter;
 import android.graphics.Bitmap;
 import android.provider.ContactsContract;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * TODO: expiration time.
  * */
-public class ImagesCache {
+public class ImagesCache implements Serializable {
 
     private static ImagesCache instance = null;
 

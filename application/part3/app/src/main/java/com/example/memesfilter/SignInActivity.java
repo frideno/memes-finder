@@ -1,9 +1,13 @@
 package com.example.memesfilter;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -25,10 +29,9 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.PhoneBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
-                new AuthUI.IdpConfig.FacebookBuilder().build()
+                new AuthUI.IdpConfig.FacebookBuilder().build(),
+                new AuthUI.IdpConfig.AnonymousBuilder().build()
         );
 
         startActivityForResult(AuthUI.getInstance()
@@ -38,6 +41,12 @@ public class SignInActivity extends AppCompatActivity {
                         .setLogo(R.drawable.when_you_logo_transparent)
                         .build(),
                 RC_SIGN_IN);
+
+        // request gallery permissions.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
+        }
+
 
     }
 
@@ -59,6 +68,18 @@ public class SignInActivity extends AppCompatActivity {
                 // Sign in failed.
                 Toast.makeText(this, "FAILED TO SIGN IN!", Toast.LENGTH_SHORT).show();
 
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1000) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //
+            } else {
+                Toast.makeText(this, "Permission not granted!", Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
     }

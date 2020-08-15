@@ -1,8 +1,5 @@
 package com.example.memesfilter;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -15,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.memesfilter.gallery.GalleryAdapter;
+import com.example.memesfilter.gallery.GalleryCell;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SearchTemplateActivity extends AppCompatActivity {
     private DatabaseReference dbRef;
@@ -43,24 +43,11 @@ public class SearchTemplateActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_search_template);
 
+        buildTemplates(true);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 1000) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //
-            } else {
-                Toast.makeText(this, "Permission not granted!", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        }
-    }
-
-    @Override
-    protected void onStart() {
+    private void buildTemplates(final boolean shuffle) {
         // todo: move to loaing screen activity:
-        super.onStart();
         // connect to firebase database of templates
         dbRef = FirebaseDatabase.getInstance().getReference().child("templates");
         recyclerView = findViewById(R.id.templates);
@@ -69,12 +56,6 @@ public class SearchTemplateActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
 
-        // request gallery permissions.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
-        } else {
-            // startGallery();
-        }
 
         if (dbRef != null) {
             dbRef.addValueEventListener(new ValueEventListener() {
@@ -85,6 +66,8 @@ public class SearchTemplateActivity extends AppCompatActivity {
                         for (DataSnapshot ds: dataSnapshot.getChildren()) {
                             templates.add(ds.getValue(GalleryCell.class));
                         }
+                        if (shuffle)
+                            Collections.shuffle(templates);
 
                         GalleryAdapter galleryAdapter = new GalleryAdapter(templates, SearchTemplateActivity.this, new FindSimilarPicturesOnClick());
                         recyclerView.setAdapter(galleryAdapter);
@@ -115,6 +98,8 @@ public class SearchTemplateActivity extends AppCompatActivity {
             });
         }
     }
+
+
 
     private void search(String query) {
         ArrayList<GalleryCell> results = new ArrayList<>();

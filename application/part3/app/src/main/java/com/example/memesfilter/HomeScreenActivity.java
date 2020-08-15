@@ -7,13 +7,16 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.memesfilter.calculator.ImagesCalculator;
+import com.example.memesfilter.calculator.ImagesCalculatorManager;
+import com.example.memesfilter.gallery.GalleryActivity;
+import com.example.memesfilter.gallery.GalleryCell;
+import com.example.memesfilter.model.FindSimilarImages;
+import com.example.memesfilter.utils.FileUtils;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
@@ -21,12 +24,13 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
     private final int GALLERY_REQUEST_CODE = 123;
+    private boolean processedYet = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +46,22 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        Intent intent = new Intent(this, ProcessImagesService.class);
-        startService(intent);
+        if (!processedYet) {
+            Intent intent = new Intent(this, ProcessImagesService.class);
+            startService(intent);
+            processedYet = true;
+        }
 
-        TextView textView = (TextView) findViewById(R.id.home_screen_hello_message);
+        TextView greetingTextView = (TextView) findViewById(R.id.home_screen_hello_message);
 
         String userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-        textView.setText(String.format(getResources().getString(R.string.home_page_hello_message_format), userName));
+        String greeting;
+        if (userName != null) {
+            greeting = String.format(getResources().getString(R.string.home_page_hello_message_format), userName);
+        } else {
+            greeting = "";
+        }
+        greetingTextView.setText(greeting);
 
         findViewById(R.id.home_page_popular_template_button).setOnClickListener(
                 new View.OnClickListener() {
@@ -60,26 +73,30 @@ public class HomeScreenActivity extends AppCompatActivity {
                 }
         );
 
+        ImagesCalculator allMemesImagesCalculator = new ImagesCalculator() {
+            @Override
+            public List<GalleryCell> getImages() {
+                ArrayList<GalleryCell> allMemes = new ArrayList<>();
+                ImagesCache imagesCache = ImagesCache.getInstance();
+
+                for (String imagePath : imagesCache.predictionsCache.keySet()) {
+                    if (imagesCache.predictionsCache.get(imagePath) && FileUtils.isFileValid(imagePath)) {
+                        allMemes.add(new GalleryCell("", imagePath));
+                    }
+                }
+                return allMemes;
+            }
+        };
+        final String imageCalculatorKey = ImagesCalculatorManager.getInstance().addCalculator(allMemesImagesCalculator);
+
         findViewById(R.id.home_page_all_memes_button).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // add all memes:
-                        ArrayList<GalleryCell> allMemes = new ArrayList<>();
-                        ImagesCache imagesCache = ImagesCache.getInstance();
-
-                        for (String imagePath: imagesCache.predictionsCache.keySet()) {
-                            if (imagesCache.predictionsCache.get(imagePath)) {
-                                allMemes.add(new GalleryCell("", imagePath));
-                            }
-                        }
-
                         // send them to the gallery activity.
                         final Intent intent = new Intent(HomeScreenActivity.this, GalleryActivity.class);
-                        Bundle args = new Bundle();
-                        args.putSerializable("ARRAYLIST", (Serializable) allMemes);
-                        intent.putExtra("BUNDLE", args);
-                        intent.putExtra("TITLE",getResources().getString(R.string.all_memes_headline));
+                        intent.putExtra("IMAGE_CALCULATOR_KEY", imageCalculatorKey);
+                        intent.putExtra("TITLE", getString(R.string.all_memes_headline));
                         HomeScreenActivity.this.startActivity(intent);
                     }
                 }
@@ -106,20 +123,36 @@ public class HomeScreenActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case GALLERY_REQUEST_CODE:
-                    try {
-                        Uri selectedImageUri = data.getData();
-                        Bitmap selectedImageBmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImageUri));
+                    ImagesCalculator imagesCalculator = new ImagesCalculator() {
+                        @Override
+                        public List<GalleryCell> getImages() {
+                            try {
+                                Uri selectedImageUri = data.getData();
+                                Bitmap selectedImageBmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImageUri));
 
-                        new FindSimilarPictures().searchAndShow(this, selectedImageBmap, "Selected Image");
-                    } catch (IOException e) {
-                        Log.e("Error", e.getMessage());
-                    }
+                                FindSimilarImages similarFinder = new FindSimilarImages();
+                                return similarFinder.find(selectedImageBmap, "Selected Image");
+
+                            } catch (IOException e) {
+                                Log.e("Error", e.getMessage());
+                                return new ArrayList<GalleryCell>();
+                            }
+                        }
+                    };
+                    final String imageCalculatorKey = ImagesCalculatorManager.getInstance().addCalculator(imagesCalculator);
+
+                    // send them to the gallery activity.
+                    final Intent intent = new Intent(HomeScreenActivity.this, GalleryActivity.class);
+                    intent.putExtra("IMAGE_CALCULATOR_KEY", imageCalculatorKey);
+                    intent.putExtra("TITLE", "Selected Image");
+                    startActivity(intent);
+
             }
         }
     }
