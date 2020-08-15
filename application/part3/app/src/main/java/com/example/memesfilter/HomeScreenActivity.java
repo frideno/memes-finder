@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.memesfilter.calculator.ImagesCalculator;
@@ -16,6 +17,7 @@ import com.example.memesfilter.utils.FileUtils;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
@@ -59,7 +61,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         if (userName != null) {
             greeting = String.format(getResources().getString(R.string.home_page_hello_message_format), userName);
         } else {
-            greeting = "";
+            greeting = "Welcome!";
         }
         greetingTextView.setText(greeting);
 

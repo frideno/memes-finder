@@ -2,6 +2,7 @@ package com.example.memesfilter.image_processing;
 
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.util.Pair;
 
@@ -24,6 +25,7 @@ import java.util.concurrent.Executors;
 public class ProcessingManager {
 
     private Context context;
+    private AssetManager assests;
 
     private FirebaseCacheDBHandler cacheDBHandler;
     private LocalCacheDBHandler localCacheDBHandler;
@@ -36,6 +38,8 @@ public class ProcessingManager {
 
     public ProcessingManager(Context context) {
         this.context = context;
+        this.assests = context.getAssets();
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference dbReff = FirebaseDatabase.getInstance().getReference().child("users-cached-data");
         this.cacheDBHandler = new FirebaseCacheDBHandler(dbReff, user);
@@ -77,7 +81,7 @@ public class ProcessingManager {
         final int imagesPerThread = (int) (imagesPathsToProcess.size() / NUM_THREADS);
         for (int i = 0; i < NUM_THREADS; i++) {
             final int finalI = i;
-            final Classify classifier = new Classify(context.getAssets());
+            final Classify classifier = new Classify(assests);
 
             new AsyncTask<Void, Void, Void>() {
 

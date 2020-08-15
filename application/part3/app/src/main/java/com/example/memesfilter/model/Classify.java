@@ -50,7 +50,9 @@ import java.util.PriorityQueue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class Classify extends AppCompatActivity {
+public class Classify {
+
+    private static final String MODEL_NAME = "model.tflite";
 
     // presets for rgb conversion
     private static final int RESULTS_TO_SHOW = 3;
@@ -142,7 +144,7 @@ public class Classify extends AppCompatActivity {
 
     // loads tflite grapg from file
     private MappedByteBuffer loadModelFile() throws IOException {
-        AssetFileDescriptor fileDescriptor = assetsManager.openFd("model.tflite");
+        AssetFileDescriptor fileDescriptor = assetsManager.openFd(MODEL_NAME);
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
         FileChannel fileChannel = inputStream.getChannel();
         long startOffset = fileDescriptor.getStartOffset();

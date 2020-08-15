@@ -9,10 +9,10 @@
     tools:context=".SearchTemplateActivity">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_width="389dp"
+        android:layout_height="73dp"
         android:layout_margin="10dp"
+        android:orientation="horizontal"
         android:padding="10dp">
 
         <TextView
