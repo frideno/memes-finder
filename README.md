@@ -2,7 +2,7 @@
 
 ## Course:
 
-- Projects workshop - 89385
+- סדנא לפרויקטים - 89385
 
 ### Students:
 
