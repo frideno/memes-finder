@@ -54,7 +54,7 @@ a few examples may explain it better than all:
 
 A meme template is a plain image that has room for text, or other modifications. These images are specifically designed to create memes.
 
-people mostly use well known template - each templates has a say or a certian logic to follow when users captioning it.
+people mostly use well known templates - each template has a say or a certian logic to follow.
 
 for example, for the 3 examples given above:
 
@@ -72,16 +72,16 @@ for example, this are a few different uses of the "Drake" meme template (which b
 
 An important thing to note about memes is that the well known templates, are filling the internet - there are hundred of thousands memes captioning each template, going mainly through social medias, chatting applications and more.
 
-most people today, when knowing or not, have phone galleries that are filled with hundred or even thousands of pictures of memes. whether they made it or someone sent it to them, or to a group chat they are in.
+most people today, knowingly or not, have phone galleries that are filled with hundred or even thousands of meme pictures. whether they made it or someone sent it to them, or to a group chat they are in.
 
-Therefore, there a few common use cases we thought we can solve:
+Therefore, there are a few common use cases we thought we can solve:
 
 - People who love the absence of memes in their gallery, and want to **find memes** in there. more specifically, they would want to **search memes** that **correspond** to well known **templates** of their choice, or basically any other image that can be treated as a template.
 - People who hate having so many memes in their gallery, and would like to **delete** them all.
 
-In both cases, the people would have to search manually. 
+In both cases, people would have to search manually. 
 
-This is where we come in. Our app searches memes in the user's gallery, and give the user the option to search by specific meme template.
+This is where we come in. Our app searches memes in the user's gallery, and gives the user the option to search by specific meme templates
 
 # 2   Application use demonstration 📱
 
