@@ -86,7 +86,9 @@ This is where we come in. Our app searches memes in the user's gallery, and give
 # 2   Application use demonstration 📱
 
 Our goal with the application, was to create a user-friendly environment that can help the user perform the said searching. 
+
 ![readme-resources/Untitled.png](readme-resources/homescreen.png)
+
 ![readme-resources/Untitled.png](readme-resources/searchAllMemes.png)
 # 3  Application Architecture 👷🏻‍♂️
 
