@@ -100,9 +100,9 @@ The below will explain the logic behind the demonstration:
 
 ![readme-resources/Untitled%202.png](readme-resources/Untitled%202.png)
 
-we created a loading animation activity, and after that, a **not mandatory** authentication.
+we created a loading animation activity, and after that, an authentication process. You may also log in as a guest, skipping said process.
 
-the advantage of authenticating is a caching of the processing results, in case of logging the app from different phone, (with same gallery).  it will be described in more details later.
+the advantage of authenticating is a caching of the processing results, in case of logging the app from different phone that shares the same images. It will be described in more details later.
 
 We used **firebase** authentication.
 
@@ -112,28 +112,26 @@ We used **firebase** authentication.
 
 **this part is the core of the application -** 
 
-We are iterating through the pictures in the user's gallery - camera, screenshots, Whatsapp pictures and more.
+The app iterates through the pictures in the user's gallery - camera, screenshots, Whatsapp pictures and more.
 
-for each picture:
+for each picture, the app:
 
-1. Compute prediction:
+1. Computes a prediction:
 
     We use our maching learning model, to **classify this picture -**
 
     - meme
     - not meme
 
-2.  Compute image hash:
+2.  Computes the image hash:
 
-if the picture was a meme, we use our preceptual hashing (image hashing) algorithm on it. it will give a 64 bit long string called image hash, which is the summery of the picture. 
+if the picture was a meme, we use our preceptual hashing (image hashing) algorithm on it. it will give a 64 bit long string called the image hash, which is a summery of the most important features of the picture. 
 
-the goal of it is to help us later compare similarity of two images, with pre-calculated separate computation. 
+the goal of said algorithm is to help us later compare the similarity of two images, using a pre-calculated separate computation. Specifically ,it will help us find if two memes are made out of the same template.
 
-specifically, it will help us find if two memes are of the same template.
+That parts generate a dictionary of image paths in the gallery to the predictions and image hashes of those images.
 
-That parts generate a dictionary of image paths (in the gallery) →  predictions and  image hashes.
-
-notice that we cache this computations, both locally and remotely.
+notice that we cache these computations, both locally and remotely.
 
 so the full flow would be:
 
@@ -146,9 +144,9 @@ so the full flow would be:
 
 An important architecture observation is that:
 
-1. get from local cache - *synchronous.* local db is fast enough to get all computations at once.
-2. get from remote cache - *asynchronous.* remote db is not as fast, and we prefer start computing, even on already computed images than block for long time.
-3. update cache - asynchronous for each image separately, we don't know when the iteration will end, on large gallery, and need to do it as soon as possible.
+1. getting from the local cache is *synchronous.* local db is fast enough to get all computations at once.
+2. getting from the remote cache is *asynchronous.* remote db is not as fast, and we prefer start computing, even on already computed images than block for long time.
+3. updating the cache is asynchronous for each image separately. We don't know when the iteration will end, on a large gallary, and we need to do it as soon as possible.
 
 ### Part 3: User POV application (View + Controller):
 
