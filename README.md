@@ -149,7 +149,7 @@ An important architecture observation is that:
 2. get from remote cache - *asynchronous.* remote db is not as fast, and we prefer start computing, even on already computed images than block for long time.
 3. update cache - asynchronous for each image separately, we don't know when the iteration will end, on large gallery, and need to do it as soon as possible.
 
-### Part 3: User POV application (View + Controller):
+## Part 3: User POV application (View + Controller):
 
 ![readme-resources/Untitled%204.png](readme-resources/Untitled%204.png)
 
@@ -182,7 +182,7 @@ Both options will eventually open a view that lists the results, and let the use
 
 Note about the templates bucket - due to the download of the popular templates through urls, we cached the templates as can be seen in the architecture flow chart.
 
-## 3.3  Models Specifications 🧠
+## 3.2  Model Specifications 🧠
 
 ### 1  The classification model - meme or not a meme?
 
@@ -307,7 +307,7 @@ notice what the threshold means - 4/5 of the hash of both images needs to be the
 
 it leaves enough room for small changes between the images but not enough room for a lot of false positives.
 
-## 3.2   Databases specifications 📦
+## 3.3   Database specifications 📦
 
 ### Computations cache database:
 
