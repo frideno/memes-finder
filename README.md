@@ -44,7 +44,7 @@ It is a bit complicated to explain for those who have not heard the term before.
 
 > ”an idea, behavior, or style that spreads by means of imitation from person to person within a culture and often carries symbolic meaning representing a particular phenomenon or theme”
 
-But a good rule of thumb, that work for most memes, is - meme is a picture, with some funny text on it. 
+But a good rule of thumb, that works for most memes, is that a meme is a picture, with some funny text on it. 
 
 a few examples may explain it better than all:
 
