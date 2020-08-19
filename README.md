@@ -149,7 +149,7 @@ An important architecture observation is that:
 2. get from remote cache - *asynchronous.* remote db is not as fast, and we prefer start computing, even on already computed images than block for long time.
 3. update cache - asynchronous for each image separately, we don't know when the iteration will end, on large gallery, and need to do it as soon as possible.
 
-## Part 3: User POV application (View + Controller):
+### Part 3: User POV application (View + Controller):
 
 ![readme-resources/Untitled%204.png](readme-resources/Untitled%204.png)
 
