@@ -32,7 +32,7 @@ This pattern is often hard to define mathematically. Therefore, we can use machi
 we wanted to create an application which uses this pattern matching on popular real life problems -
 
 - ***memes classifying -** given an image, is it a meme?*
-- ***searching by meme template -** given an image, and a template image, is the image a meme . constructed using the template image ?*
+- ***searching by meme template -** given an image, and a template image, is the image a meme that is constructed using the template image?*
 
 ## 1.2  Background about Memes 😂
 
