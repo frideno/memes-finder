@@ -29,7 +29,7 @@ The basic idea behind this, is that some users sometimes want to filter their ga
 
 This pattern is often hard to define mathematically. Therefore, we can use machine learning and image processing algorithms to find all images that match this pattern in one’s gallery.
 
-we wanted to create an application which use this pattern matching on currently hot real life problems -
+we wanted to create an application which uses this pattern matching on popular real life problems -
 
 - ***memes classifying -** given an image, is it a meme?*
 - ***searching by meme template -** given an image, and a template image, is the image a meme . constructed using the template image ?*
