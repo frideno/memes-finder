@@ -86,9 +86,8 @@ This is where we come in. Our app searches memes in the user's gallery, and give
 # 2   Application use demonstration 📱
 
 Our goal with the application, was to create a user-friendly environment that can help the user perform the said searching. 
-
-/* TODO screenshot or video */
-
+![readme-resources/Untitled.png](readme-resources/homescreen.png)
+![readme-resources/Untitled.png](readme-resources/searchAllMemes.png)
 # 3  Application Architecture 👷🏻‍♂️
 
 ## 3.1  Application flow chart ➡️
@@ -182,7 +181,7 @@ Both options will eventually open a view that lists the results, and let the use
 
 Note about the templates bucket - due to the download of the popular templates through urls, we cached the templates as can be seen in the architecture flow chart.
 
-## 3.2  Model Specifications 🧠
+## 3.3  Models Specifications 🧠
 
 ### 1  The classification model - meme or not a meme?
 
@@ -307,7 +306,7 @@ notice what the threshold means - 4/5 of the hash of both images needs to be the
 
 it leaves enough room for small changes between the images but not enough room for a lot of false positives.
 
-## 3.3   Database specifications 📦
+## 3.2   Databases specifications 📦
 
 ### Computations cache database:
 
