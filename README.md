@@ -54,7 +54,7 @@ a few examples may explain it better than all:
 
 A meme template is a plain image that has room for text, or other modifications. These images are specifically designed to create memes.
 
-people mostly use well known templates - each template has a say or a certian logic to follow.
+people mostly use well known template - each templates has a say or a certian logic to follow when users captioning it.
 
 for example, for the 3 examples given above:
 
@@ -72,16 +72,16 @@ for example, this are a few different uses of the "Drake" meme template (which b
 
 An important thing to note about memes is that the well known templates, are filling the internet - there are hundred of thousands memes captioning each template, going mainly through social medias, chatting applications and more.
 
-most people today, knowingly or not, have phone galleries that are filled with hundred or even thousands of meme pictures. whether they made it or someone sent it to them, or to a group chat they are in.
+most people today, when knowing or not, have phone galleries that are filled with hundred or even thousands of pictures of memes. whether they made it or someone sent it to them, or to a group chat they are in.
 
-Therefore, there are a few common use cases we thought we can solve:
+Therefore, there a few common use cases we thought we can solve:
 
 - People who love the absence of memes in their gallery, and want to **find memes** in there. more specifically, they would want to **search memes** that **correspond** to well known **templates** of their choice, or basically any other image that can be treated as a template.
 - People who hate having so many memes in their gallery, and would like to **delete** them all.
 
-In both cases, people would have to search manually. 
+In both cases, the people would have to search manually. 
 
-This is where we come in. Our app searches memes in the user's gallery, and gives the user the option to search by specific meme templates
+This is where we come in. Our app searches memes in the user's gallery, and give the user the option to search by specific meme template.
 
 # 2   Application use demonstration 📱
 
@@ -153,7 +153,7 @@ An important architecture observation is that:
 
 ![readme-resources/Untitled%204.png](readme-resources/Untitled%204.png)
 
-This part opens a menu that has 3 main function
+This part opens a menu that has 3 main functions:
 
 1. “Find meme by popular template”.
 2. “Find meme by template from storage”.
@@ -161,15 +161,15 @@ This part opens a menu that has 3 main function
 
 **memes classifying:**
 
-**“Find all memes”**- will show a gallery-like view of all pictures labled as memes in the processing part.
+**“Find all memes”** - will show a gallery-like view of all memes in the gallary.
 
 **memes search by templates:**
 
-**“Find meme by popular template” -** will show the user a list of popular templates, downloaded from urls loaded from our db. the user can search for a popular templates - such as "drake", and it will show all matching templates. at the end the user will chose a template image.
+**“Find meme by popular template”** - shows the user a list of popular templates, downloaded from urls loaded from our db. the user can search for popular templates - such as "drake", and it will show all matching templates. at the end the user will chose a template image.
 
-“**Find meme by template from storage”** - will let the user chose a gallery image as the template image. for example if the user want to search for a meme captioning his/her friend picture.
+“**Find meme by template from storage”** - lets the user chose a gallery image as the template image. For example if the user wants to search for a meme captioning a picture of their friend.
 
-after choosing a template image using one of the two written above ways, the app will use the pre classifications and calculated images hashes to create a list of all the matching memes of that templates in the users gallery.
+after choosing a template image using one of the two ways seen above, the app will use the classifications and calculated image hashes for the images in the gallary to create a list of all the matching memes of that templates in the users gallery.
 
 Both options will eventually open a view that lists the results, and let the user do common actions on the images:
 
@@ -184,7 +184,7 @@ Note about the templates bucket - due to the download of the popular templates t
 
 ## 3.3  Models Specifications 🧠
 
-### 1  Classifying model - meme or not meme?
+### 1  The classification model - meme or not a meme?
 
 **Data Scraping:**
 
@@ -192,7 +192,7 @@ To begin the making of the model, a dataset was needed.
 
 We created a Python script using the dev API of **Reddit,** a popular site that hosts many forums, to extract images – both from communities which are dedicated to memes and from those which are not. 
 
-Special care was given to choosing the communities - we chose those that match average gallery images, to create a training set that is the most similar to real life test data.
+Special care was given to choosing the communities - we chose those that match the images of an average gallary, to create a training set that is the most similar to real life data.
 
 examples for the reddit communities chosen, with their ratios in the training set:
 
@@ -220,8 +220,8 @@ splitted to a training and validation sets in a 9-1 ratio.
 We decided to use the *Python Tensorflow package*, for several reasons:
 
 1. It was easy to create models in, which helped to create, train, and test many models.
-2. Tensorflow models can be used in other programming languages by an API, which makes the final model easier to integrate in any framework that we chose - specifically - the Android app.
-3. Tensorflow models can be specifically converted to models suited for model using a framework named Tensorflow Lite. This allowed for fast, efficient, and small models, which was exactly what was needed for this project.
+2. Tensorflow models can be used in other programming languages by an API, which makes the final model easier to integrate in any framework that we chose, and specifically those for an Android app.
+3. Tensorflow models can be specifically converted to models suited for apps using a framework named Tensorflow Lite. This allowed for fast, efficient, and small models, which was exactly what was needed for this project.
 
 The model we decided to use was a Convolutional Neural Network. Such a network was created and trained to great results – over 95% accuracy on the validation set. However, the network was ridiculously big – over 1.5GB before being converted to Tensorflow Lite and over 500MB after the conversion – and very slow. Therefore, the network had to be cut down.
 
@@ -245,12 +245,12 @@ model = Sequential([
 
 This model achieved an accuracy of 88% on the validation set, while only having a memory footprint of 5MB! However, false positives were still a problem – even 14% is noticeable. For that we needed to adjust the threshold of the results of the model.
 
-When given an image, our model returns 2 values:
+When given an image, our model returns 2 values that sum up to one:
 
 - probability of the image being a meme
 - probably of the image not being a meme
 
-Usually we pick the bigger number. as that is the more probable result.
+Usually we pick the bigger number, as that is the more probable result.
 
 To minimize false positives, however, we could adjust said threshold to reflect our need for a more rigorous process for an image to be defined as a meme. 
 
@@ -282,8 +282,8 @@ image hash (image):
 
 important notes about this algorithm:
 
-- simple, fast - was very important to us.
-- designed specifically for memes, which has a lot of white and black pixels that really doesn't matter - text / background. therefore we leave them.
+- it is simple and fast, which was very important to us.
+- it was designed specifically for memes, which have a lot of white and black pixels that really doesn't matter, such as a white background for many templates and the text of the meme. therefore we leave them.
 
 **checking if memes are similar - i.e. are they from the same template?**
 
@@ -303,9 +303,9 @@ is similiar (image1, image2):
 
 ```
 
-notice what the threshold means - 4/5 of the image hashes needs to be the same.
+notice what the threshold means - 4/5 of the hash of both images needs to be the same.
 
-it leaves enough room for a text or small items changes between the images, but not enough room for a lot of false positives.
+it leaves enough room for small changes between the images but not enough room for a lot of false positives.
 
 ## 3.2   Databases specifications 📦
 
@@ -363,7 +363,7 @@ public static final String IMAGE_HASH = "image_hash";
 
 ### Templates Database
 
-could've been a bucket of images, but due to copyright issue, did better as a db of urls to the images.
+we could have made a bucket of images, but due to copyright issues we decided to use a db of urls to the images.
 
 Schema:
 
@@ -400,7 +400,7 @@ Example:
 
 ### **Languages used:**
 
-- Python - model data scraping, model training
+- Python - model data scraping, model training, many tests that were conducted during the development.
 - Java - android mobile application development.
 
 ### **Main Technologies used:**
@@ -423,7 +423,7 @@ Example:
 
 # 4  Summery
 
-overall, this project was a great opportunity for us to create a brand new, interesting application, of a subject we like - memes.
+overall, this project was a great opportunity for us to create a brand new and interesting application based on a subject we like - memes.
 
 we learned a lot about:
 
