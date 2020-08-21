@@ -87,8 +87,8 @@ This is where we come in. Our app searches memes in the user's gallery, and give
 
 Our goal with the application, was to create a user-friendly environment that can help the user perform the said searching. 
 
-![find all memes demonstration video](readme-resources/demo-videos/demo-find-all-memes.mp4)
-![find memes by popular template demonstration video](readme-resources/demo-videos/demo-find-by-template.mp4)
+![find all memes demonstration video](readme-resources/demo-gifs/find-all-memes.gif)
+![find memes by popular template demonstration video](readme-resources/demo-gifs/find-memes-by-template.gif)
 
 # 3  Application Architecture 👷🏻‍♂️
 
