@@ -23,7 +23,7 @@ numpy==1.18.4
 oauthlib==3.1.0
 opt-einsum==3.2.1
 pandas==1.0.4
-Pillow==7.1.2
+Pillow==8.1.1
 praw==7.0.0
 prawcore==1.4.0
 protobuf==3.12.2
