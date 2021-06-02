@@ -50,7 +50,7 @@ tf-estimator-nightly==2.3.0.dev2020060201
 tf-nightly==2.3.0.dev20200603
 threadpoolctl==2.1.0
 update-checker==0.17
-urllib3==1.25.9
+urllib3==1.26.5
 websocket-client==0.57.0
 Werkzeug==1.0.1
 wrapt==1.12.1
